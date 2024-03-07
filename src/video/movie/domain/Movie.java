@@ -13,6 +13,7 @@ public class Movie {
     private int charge; // 대여 가격
     private boolean rental; // 대여 가능 여부
     private User rentalUser; // 현재 대여자 정보
+    private Integer movieNumber;
 
     public Movie(String movieName, String nation, int pubYear) {
         this.serialNumber = ++movieSequence;
@@ -88,5 +89,13 @@ public class Movie {
                         ", 발매연도: " + pubYear + "년" +
                         ", 대여료: " + charge + "원" +
                         ", 대여상태: " + rental;
+    }
+
+    public Integer getMovieNumber() {
+        return movieNumber;
+    }
+
+    public void setMovieNumber(Integer movieNumber) {
+        this.movieNumber = movieNumber;
     }
 }

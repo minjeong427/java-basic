@@ -48,7 +48,6 @@ public class MovieRepository {
     }
 
     public List<Movie> searchMovieList(Condition condition, String keyword) throws Exception {
-
         if (condition == PUB_YEAR) {
             return searchByPubYear(keyword);
         } else if (condition == NATION) {
@@ -85,7 +84,6 @@ public class MovieRepository {
         return searchedList;
     }
 
-
     private List<Movie> searchByNation(String keyword) {
         List<Movie> searchedList = new ArrayList<>();
 
@@ -109,13 +107,35 @@ public class MovieRepository {
         }
         return searchedList;
     }
+
+    public Movie deleteMovie(int delMovieNum) {
+        return movieDatabase.remove(delMovieNum);
+    }
+
+    public List<Movie> searchByRental(boolean possible) {
+        List<Movie> searchedList = new ArrayList<>();
+
+        if (possible) { // 대여 가능한 Movie들만 거르기
+            for (int key : movieDatabase.keySet()) {
+                Movie movie = movieDatabase.get(key);
+                if (!movie.isRental()) {
+                    searchedList.add(movie);
+                }
+            }
+        } else { // 이미 대여중인 Movie들만 거르기
+            for (int key : movieDatabase.keySet()) {
+                Movie movie = movieDatabase.get(key);
+                if (movie.isRental()) {
+                    searchedList.add(movie);
+                }
+            }
+        }
+
+        return searchedList;
+    }
+
+    // 번호에 맞는 영화 객체를 단 하나만 리턴하는 메서드
+    public Movie searchMovie(int movieNumber) {
+        return movieDatabase.get(movieNumber);
+    }
 }
-
-
-
-
-
-
-
-
-
