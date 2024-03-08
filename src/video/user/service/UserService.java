@@ -75,7 +75,7 @@ public class UserService implements AppService {
         User newUser = new User(name, phone, Grade.BRONZE);
 
         userRepository.addUser(newUser);
-        System.out.printf("\n### [%s]님의 회원 가입이 완료되었습니다.\n", name);
+        System.out.printf("\n### [%s]님의 회원 가입이 완료되었습니다.\n", newUser.getUserName());
     }
 
     // 회원 탈퇴 비즈니스 로직
